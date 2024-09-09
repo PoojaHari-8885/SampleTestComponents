@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TestComponents</string>
     <string name="app_title">GridTest</string>
+    <string name="todo">TODO</string>
 </resources>

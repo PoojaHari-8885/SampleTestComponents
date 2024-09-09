@@ -2,9 +2,11 @@ package com.sample.testcomponents.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.sample.testcomponents.R
 import com.sample.testcomponents.databinding.MainActivityBinding
-import com.sample.testcomponents.ui.fragment.GridLayoutFragment
+import com.sample.testcomponents.ui.fragment.AppsFragment
+import com.sample.testcomponents.ui.fragment.SubscriptionFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,18 +15,34 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MainActivityBinding.inflate(layoutInflater)
-        binding!!.title.text = applicationContext.resources.getString(R.string.app_title)
         setContentView(binding!!.root)
+        setUpTab()
     }
 
     override fun onResume() {
         super.onResume()
-        loadFragment()
+        binding!!.appsTab.tabItem.performClick()
     }
 
-    private fun loadFragment() {
+    private fun loadFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(
-            R.id.fragment_container, GridLayoutFragment()).addToBackStack(null).commit()
+            R.id.fragment_container, fragment).addToBackStack(null).commit()
+    }
+
+    private fun setUpTab() {
+        binding?.apply {
+
+            appsTab.tabTitle.text = "Apps"
+            subscriptionsTab.tabTitle.text = "Feature Subscription"
+
+            appsTab.tabItem.setOnClickListener {
+                loadFragment(AppsFragment())
+            }
+
+            subscriptionsTab.tabItem.setOnClickListener {
+                loadFragment(SubscriptionFragment())
+            }
+        }
     }
 
     override fun onDestroy() {
