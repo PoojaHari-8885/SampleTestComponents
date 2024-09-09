@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.sample.testcomponents.databinding.SubscriptionsListAdapterBinding
 import com.sample.testcomponents.ui.data.AppDataItem
 
-class SubscriptionsAdapter(val subscriptionList: ArrayList<AppDataItem>?): Adapter<ViewHolder>() {
+class SubscriptionsAdapter(val subscriptionsList: ArrayList<AppDataItem>?): Adapter<ViewHolder>() {
 
     var binding: SubscriptionsListAdapterBinding? = null
 
@@ -17,11 +17,11 @@ class SubscriptionsAdapter(val subscriptionList: ArrayList<AppDataItem>?): Adapt
     }
 
     override fun getItemCount(): Int {
-        return subscriptionList!!.size
+        return subscriptionsList!!.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        (holder as GridLayoutViewHolder).bind(subscriptionList!![position])
+        (holder as GridLayoutViewHolder).bind(subscriptionsList!![position])
     }
 
     inner class GridLayoutViewHolder: ViewHolder(binding!!.root) {
