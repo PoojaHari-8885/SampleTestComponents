@@ -31,14 +31,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpTab() {
         binding?.apply {
-
             appsTab.tabTitle.text = "Apps"
             subscriptionsTab.tabTitle.text = "Feature Subscription"
 
             appsTab.tabItem.setOnClickListener {
                 loadFragment(AppsFragment())
             }
-
             subscriptionsTab.tabItem.setOnClickListener {
                 loadFragment(SubscriptionFragment())
             }
