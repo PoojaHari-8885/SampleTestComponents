@@ -26,11 +26,11 @@ class SubscriptionsAdapter(val subscriptionList: ArrayList<AppDataItem>?): Adapt
 
     inner class GridLayoutViewHolder: ViewHolder(binding!!.root) {
 
-        fun bind(appItem: AppDataItem) {
+        fun bind(subscriptionItem: AppDataItem) {
             binding?.apply {
-                subscriptionAppName.text = appItem.appName
-                subscriptionAppDescription.text = appItem.appDescription
-                subscriptionRate.text = appItem.appStatus
+                subscriptionAppName.text = subscriptionItem.appName
+                subscriptionAppDescription.text = subscriptionItem.appDescription
+                subscriptionRate.text = subscriptionItem.appStatus
             }
         }
     }
