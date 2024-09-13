@@ -12,4 +12,10 @@
         android:layout_margin="25dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/subscription_detailed_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="25dp"/>
+
 </LinearLayout>
