@@ -4,6 +4,8 @@
     android:id="@+id/root_subscription_item"
     android:layout_width="match_parent"
     android:layout_height="100dp"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical">
 
     <LinearLayout
@@ -18,14 +20,6 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
             android:layout_marginStart="15dp">
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/subscription_icon_background"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:foreground="@drawable/icon_bg"
-                android:scaleType="fitXY"
-                app:shapeAppearance="@style/ShapeAppearanceOverlay.Curved" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/subscription_icon_image"
@@ -63,25 +57,13 @@
 
         </LinearLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/subscription_status_container"
+        <Button
+            android:id="@+id/subscription_rate"
             android:layout_width="120dp"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:layout_marginStart="20dp"
-            app:cardBackgroundColor="@color/purple_500"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp">
-
-            <TextView
-                android:id="@+id/subscription_rate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="15dp"
-                android:gravity="center"
-                android:textSize="15sp" />
-
-        </androidx.cardview.widget.CardView>
+            android:layout_gravity="center"
+            android:background="@color/black"/>
 
     </LinearLayout>
 

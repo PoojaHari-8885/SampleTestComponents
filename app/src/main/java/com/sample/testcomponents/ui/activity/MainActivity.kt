@@ -1,5 +1,6 @@
 package com.sample.testcomponents.ui.activity
 
+import android.nfc.Tag
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         binding!!.appsTab.tabItem.performClick()
     }
 
-    private fun loadFragment(fragment: Fragment) {
+    private fun loadFragment(fragment: Fragment, tag: String) {
         supportFragmentManager.beginTransaction().replace(
             R.id.fragment_container, fragment).addToBackStack(null).commit()
     }
@@ -35,10 +36,10 @@ class MainActivity : AppCompatActivity() {
             subscriptionsTab.tabTitle.text = "Feature Subscription"
 
             appsTab.tabItem.setOnClickListener {
-                loadFragment(AppsFragment())
+                loadFragment(AppsFragment(), "AppsFragment")
             }
             subscriptionsTab.tabItem.setOnClickListener {
-                loadFragment(SubscriptionFragment())
+                loadFragment(SubscriptionFragment(), "SubscriptionFragment")
             }
         }
     }
