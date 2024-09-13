@@ -2,4 +2,14 @@
     <string name="app_name">TestComponents</string>
     <string name="app_title">GridTest</string>
     <string name="todo">TODO</string>
+
+    <string name="provider">Provider</string>"
+    <string name="size">Size</string>
+    <string name="languages">Languages</string>
+    <string name="category">Category</string>
+    <string name="compatibility">Compatibility</string>
+    <string name="copyright">Copyright</string>
+    <string name="description">Description</string>
+    <string name="downloads">Downloads</string>
+
 </resources>
