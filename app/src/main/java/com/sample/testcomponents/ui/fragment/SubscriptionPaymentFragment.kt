@@ -6,12 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import com.sample.testcomponents.R
 
 class SubscriptionPaymentFragment: Fragment() {
 
     private lateinit var backButton: ImageView
+
+    private lateinit var cardInfoLayout: LinearLayout
+    private lateinit var upiInfoLayout: LinearLayout
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +35,8 @@ class SubscriptionPaymentFragment: Fragment() {
 
     private fun configureViews(view: View) {
         backButton = view.findViewById(R.id.payment_back_button)
+        cardInfoLayout = view.findViewById(R.id.payment_screen_card_info)
+        upiInfoLayout = view.findViewById(R.id.payment_screen_upi_info)
     }
 
     private fun configureBtnClick() {
@@ -39,5 +45,14 @@ class SubscriptionPaymentFragment: Fragment() {
                 requireActivity().supportFragmentManager.popBackStack()
             }
         }
+
+        cardInfoLayout.setOnClickListener {
+            showPaymentStatusDialog()
+        }
+    }
+
+    private fun showPaymentStatusDialog() {
+        val paymentStatusDialog = PaymentStatusDialog()
+        paymentStatusDialog.show(requireActivity().supportFragmentManager, "PaymentStatusDialog")
     }
 }

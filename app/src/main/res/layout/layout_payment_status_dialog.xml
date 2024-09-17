@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/close_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="900dp"
+        android:src="@drawable/ic_launcher_foreground"/>
+
+    <ImageView
+        android:id="@+id/payment_status_icon"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_launcher_foreground"/>
+
+    <TextView
+        android:id="@+id/text_transaction_details"
+        android:layout_width="400dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:text="@string/transaction_details"/>
+
+    <TextView
+        android:id="@+id/transaction_app_name"
+        android:layout_width="400dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="40dp"
+        android:textSize="20sp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:text="DriveSmart Plus"/>
+
+    <TextView
+        android:id="@+id/transaction_rate"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:text="Rs 499"/>
+
+    <TextView
+        android:id="@+id/payment_status_text"
+        android:layout_width="400dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="25dp"
+        android:textSize="20sp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:textColor="@color/green"
+        android:textAlignment="center"
+        android:text="Payment Successful"/>
+
+    <LinearLayout
+        android:id="@+id/payment_history"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginTop="160dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/transaction_id_layout"
+            android:layout_width="250dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_view_transaction_id"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/grey"
+                android:textAlignment="textStart"
+                android:text="@string/transaction_id"/>
+
+            <TextView
+                android:id="@+id/transaction_id"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/text_view_transaction_id"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textAlignment="textStart"
+                android:text="8765432566"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_transaction_date_time"
+            android:layout_width="250dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_view_transaction_date_time"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/grey"
+                android:textAlignment="textStart"
+                android:text="@string/date_and_time"/>
+
+            <TextView
+                android:id="@+id/transaction_date_time"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/text_view_transaction_date_time"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textAlignment="textStart"
+                android:text="August 19, 2024 AT 11:02 AM"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/transaction_method_layout"
+            android:layout_width="150dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_view_transaction_method"
+                android:layout_width="400dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/grey"
+                android:textAlignment="textStart"
+                android:text="@string/payment_method"/>
+
+            <TextView
+                android:id="@+id/transaction_method"
+                android:layout_width="400dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/text_view_transaction_method"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textAlignment="textStart"
+                android:text="UPI / QR"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

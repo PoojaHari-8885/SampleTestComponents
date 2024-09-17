@@ -155,7 +155,6 @@ class SubscriptionDetailedFragment: Fragment() {
         }
 
         subscribeButton.setOnClickListener {
-            //Load next payment page
             loadSubscriptionPaymentFragment()
         }
     }
