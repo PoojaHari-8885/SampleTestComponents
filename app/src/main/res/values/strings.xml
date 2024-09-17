@@ -11,5 +11,9 @@
     <string name="copyright">Copyright</string>
     <string name="description">Description</string>
     <string name="downloads">Downloads</string>
+    <string name="select_payment_text">Select a payment mode</string>
+    <string name="auto_renewal_text">No Auto Renewal. Top-up anytime</string>
+    <string name="card_detail">Credit and Debit Cards</string>
+    <string name="upi_detail">UPI / QR</string>
 
 </resources>

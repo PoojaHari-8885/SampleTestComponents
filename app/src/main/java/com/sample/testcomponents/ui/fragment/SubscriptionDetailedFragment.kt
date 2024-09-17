@@ -153,6 +153,17 @@ class SubscriptionDetailedFragment: Fragment() {
                 requireActivity().supportFragmentManager.popBackStack()
             }
         }
+
+        subscribeButton.setOnClickListener {
+            loadSubscriptionPaymentFragment()
+        }
+    }
+
+    private fun loadSubscriptionPaymentFragment() {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, SubscriptionPaymentFragment())
+            .addToBackStack("SubscriptionPaymentFragment")
+            .commitAllowingStateLoss()
     }
 
     private fun setAppDescriptionDetails() {
