@@ -61,13 +61,14 @@ class SubscriptionFragment: Fragment(), ItemClickListener {
         subscriptionsAdapter = SubscriptionsAdapter(appListArray, this)
     }
 
-    override fun onSubscriptionButtonClick(subscriptionDataItem : SubscriptionDataItem) {
-        loadSubscriptionDetailFragment(subscriptionDataItem)
+    override fun onSubscriptionButtonClick(subscriptionDataItem : SubscriptionDataItem, position: Int) {
+        loadSubscriptionDetailFragment(subscriptionDataItem, position)
     }
 
-    private fun loadSubscriptionDetailFragment(subscriptionDataItem : SubscriptionDataItem) {
+    private fun loadSubscriptionDetailFragment(subscriptionDataItem : SubscriptionDataItem, position: Int) {
         val fragment = SubscriptionDetailedFragment()
         fragment.arguments = Bundle().apply {
+            putInt("subscriptionDataPosition_Key", position)
             putParcelable("subscriptionDataItem_Key", subscriptionDataItem)
         }
         requireActivity().supportFragmentManager.beginTransaction()
@@ -77,9 +78,9 @@ class SubscriptionFragment: Fragment(), ItemClickListener {
     }
 
     private fun observeViewModel() {
-        appActivityViewModel.notifyChange.observe(viewLifecycleOwner) {
-            Log.d("POOJA123" , "observeViewModel : $it")
-            subscriptionsAdapter?.notifyDataSetChanged()
+        appActivityViewModel.notifyPosChange.observe(viewLifecycleOwner) {
+            Log.d("POOJA123" , "SubscriptionFragment notifyPosChange : $it")
+            subscriptionsAdapter?.setAdapter(it)
         }
     }
 }

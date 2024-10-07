@@ -1,5 +1,7 @@
 package com.sample.testcomponents.ui.adapter
 
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +15,7 @@ import com.sample.testcomponents.ui.data.SubscriptionDataItem
 import com.sample.testcomponents.ui.interfaces.ItemClickListener
 
 
-class SubscriptionsAdapter(private val subscriptionsList: ArrayList<SubscriptionDataItem>?, private val subscriptionButtonListener: ItemClickListener) :
+class SubscriptionsAdapter(private var subscriptionsList: ArrayList<SubscriptionDataItem>?, private val subscriptionButtonListener: ItemClickListener) :
     Adapter<ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubscriptionViewHolder {
@@ -25,15 +27,16 @@ class SubscriptionsAdapter(private val subscriptionsList: ArrayList<Subscription
     }
 
     override fun getItemCount(): Int {
-        if (subscriptionsList!!.isEmpty()) {
-            return 0
+        return if (subscriptionsList!!.isEmpty()) {
+            0
         } else {
-            return subscriptionsList.size
+            subscriptionsList!!.size
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as SubscriptionViewHolder).bind(subscriptionsList!![position])
+        Log.d("POOJA", "onBindViewHolder : $position and subscriptionsList!![position] : ${subscriptionsList!![position]}")
+        (holder as SubscriptionViewHolder).bind(subscriptionsList!![position], position)
     }
 
     inner class SubscriptionViewHolder(itemView: View) : ViewHolder(itemView) {
@@ -45,14 +48,26 @@ class SubscriptionsAdapter(private val subscriptionsList: ArrayList<Subscription
         private var subscribtionRateButton: Button =
             itemView.findViewById<View>(R.id.subscription_rate) as Button
 
-        fun bind(appItem: SubscriptionDataItem) {
+        fun bind(appItem: SubscriptionDataItem, position: Int) {
             subscriptionAppName.text = appItem.appName
             subscriptionAppDescription.text = appItem.appDescription
             subscribtionRateButton.text = appItem.appStatus
 
+            if(appItem.isSubscribed) {
+                subscribtionRateButton.text = "Subscribed"
+            } else {
+                subscribtionRateButton.text = appItem.appStatus
+            }
+
             subscribtionRateButton.setOnClickListener {
-                subscriptionButtonListener.onSubscriptionButtonClick(appItem)
+                subscriptionButtonListener.onSubscriptionButtonClick(appItem, position)
             }
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setAdapter(pos : Int) {
+        subscriptionsList!![pos].isSubscribed = true
+        notifyItemChanged(pos)
     }
 }

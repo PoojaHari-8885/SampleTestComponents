@@ -1,6 +1,7 @@
 package com.sample.testcomponents.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -69,6 +70,8 @@ class SubscriptionDetailedFragment: Fragment() {
 
     private var subscribeDataItem: SubscriptionDataItem? = null
 
+    private var subscribedPos: Int = -1
+
     val appActivityViewModel: AppActivityViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -84,6 +87,7 @@ class SubscriptionDetailedFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeDataItem = arguments?.getParcelable("subscriptionDataItem_Key")
+        subscribedPos = arguments?.getInt("subscriptionDataPosition_Key")!!
         configureViews(view)
         configureBtnClick()
         setAppDescriptionDetails()
@@ -171,6 +175,7 @@ class SubscriptionDetailedFragment: Fragment() {
     private fun loadSubscriptionPaymentFragment() {
         val frag = SubscriptionPaymentFragment()
         frag.arguments = Bundle().apply {
+            putInt("subscriptionDataPosition_Key", subscribedPos)
             putParcelable("subscriptionDataItem_Key", subscribeDataItem)
         }
         requireActivity().supportFragmentManager.beginTransaction()
@@ -215,7 +220,10 @@ class SubscriptionDetailedFragment: Fragment() {
 
     private fun observeViewModel() {
         appActivityViewModel.notifyChange.observe(viewLifecycleOwner) {
-            subscribeButton.text = "Subscribed"
+            if(it == subscribeDataItem) {
+                if(it.isSubscribed) subscribeButton.text = "Subscribed"
+                else subscribeButton.text = "Subscribe \u20B9 499"
+            }
         }
     }
 }

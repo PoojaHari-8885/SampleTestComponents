@@ -4,6 +4,6 @@ import com.sample.testcomponents.ui.data.SubscriptionDataItem
 
 interface ItemClickListener {
 
-    fun onSubscriptionButtonClick(subscriptionDataItem: SubscriptionDataItem)
+    fun onSubscriptionButtonClick(subscriptionDataItem: SubscriptionDataItem, position: Int)
 
 }

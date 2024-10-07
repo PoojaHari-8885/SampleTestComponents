@@ -23,6 +23,8 @@ class SubscriptionPaymentFragment: Fragment() {
 
     private lateinit var subscribeDataItem: SubscriptionDataItem
 
+    private var subscribedPos: Int = -1
+
     val appActivityViewModel: AppActivityViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -38,12 +40,13 @@ class SubscriptionPaymentFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeDataItem = arguments?.getParcelable("subscriptionDataItem_Key")!!
+        subscribedPos = arguments?.getInt("subscriptionDataPosition_Key")!!
         configureViews(view)
         configureBtnClick()
     }
 
     private fun configureViews(view: View) {
-        backButton = view.findViewById(R.id.payment_screen_app_icon)
+        backButton = view.findViewById(R.id.payment_back_button)
         cardInfoLayout = view.findViewById(R.id.payment_screen_card_info)
         upiInfoLayout = view.findViewById(R.id.payment_screen_upi_info)
     }
@@ -59,6 +62,7 @@ class SubscriptionPaymentFragment: Fragment() {
             Log.d("POOJA","cardInfoLayout clicked")
             subscribeDataItem.isSubscribed = true
             appActivityViewModel.setSubscriptionData(subscribeDataItem)
+            appActivityViewModel.setSubscriptionPosition(subscribedPos)
             showPaymentStatusDialog()
         }
     }
