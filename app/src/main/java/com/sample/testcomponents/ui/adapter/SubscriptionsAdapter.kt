@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.sample.testcomponents.R
-import com.sample.testcomponents.ui.data.AppDataItem
+import com.sample.testcomponents.ui.data.SubscriptionDataItem
 import com.sample.testcomponents.ui.interfaces.ItemClickListener
 
 
-class SubscriptionsAdapter(private val subscriptionsList: ArrayList<AppDataItem>?, private val subscriptionButtonListener: ItemClickListener) :
+class SubscriptionsAdapter(private val subscriptionsList: ArrayList<SubscriptionDataItem>?, private val subscriptionButtonListener: ItemClickListener) :
     Adapter<ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubscriptionViewHolder {
@@ -45,13 +45,13 @@ class SubscriptionsAdapter(private val subscriptionsList: ArrayList<AppDataItem>
         private var subscribtionRateButton: Button =
             itemView.findViewById<View>(R.id.subscription_rate) as Button
 
-        fun bind(appItem: AppDataItem) {
+        fun bind(appItem: SubscriptionDataItem) {
             subscriptionAppName.text = appItem.appName
             subscriptionAppDescription.text = appItem.appDescription
             subscribtionRateButton.text = appItem.appStatus
 
             subscribtionRateButton.setOnClickListener {
-                subscriptionButtonListener.onSubscriptionButtonClick()
+                subscriptionButtonListener.onSubscriptionButtonClick(appItem)
             }
         }
     }

@@ -63,7 +63,7 @@
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:layout_gravity="center"
-            android:background="@color/black"/>
+            android:background="@color/white"/>
 
     </LinearLayout>
 

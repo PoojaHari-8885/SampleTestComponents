@@ -10,7 +10,10 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.sample.testcomponents.R
+import com.sample.testcomponents.ui.data.SubscriptionDataItem
+import com.sample.testcomponents.ui.viewmodels.AppActivityViewModel
 
 class SubscriptionDetailedFragment: Fragment() {
 
@@ -64,6 +67,10 @@ class SubscriptionDetailedFragment: Fragment() {
     private lateinit var appShortDetail: TextView
     private lateinit var appLongDescription: TextView
 
+    private var subscribeDataItem: SubscriptionDataItem? = null
+
+    val appActivityViewModel: AppActivityViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -76,11 +83,13 @@ class SubscriptionDetailedFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        subscribeDataItem = arguments?.getParcelable("subscriptionDataItem_Key")
         configureViews(view)
         configureBtnClick()
         setAppDescriptionDetails()
         setAppDetails()
         setInformationDetails()
+        observeViewModel()
     }
 
     private fun configureViews(view: View) {
@@ -160,8 +169,12 @@ class SubscriptionDetailedFragment: Fragment() {
     }
 
     private fun loadSubscriptionPaymentFragment() {
+        val frag = SubscriptionPaymentFragment()
+        frag.arguments = Bundle().apply {
+            putParcelable("subscriptionDataItem_Key", subscribeDataItem)
+        }
         requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, SubscriptionPaymentFragment())
+            .replace(R.id.fragment_container, frag)
             .addToBackStack("SubscriptionPaymentFragment")
             .commitAllowingStateLoss()
     }
@@ -171,7 +184,7 @@ class SubscriptionDetailedFragment: Fragment() {
         appName.text = "DriveSmartPlus"
         appShortDesc.text = "Smart Car Manager"
 
-        subscribeButton.text = "Subscribe Rs 499"
+        subscribeButton.text = "Subscribe \u20B9 499"
         subscribeCharge.text = "One time charge"
 
         appShortDetail.text = "Your all-in-one smart car manager for safe smarter driving"
@@ -198,5 +211,11 @@ class SubscriptionDetailedFragment: Fragment() {
         categoryNameTextView.text = "Producitivity"
         compatibilityValueTextView.text = "Yes"
         copyrightNameTextView.text = "Copyright 2023"
+    }
+
+    private fun observeViewModel() {
+        appActivityViewModel.notifyChange.observe(viewLifecycleOwner) {
+            subscribeButton.text = "Subscribed"
+        }
     }
 }
